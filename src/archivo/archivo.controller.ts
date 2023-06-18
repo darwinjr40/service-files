@@ -17,18 +17,18 @@ export class ArchivoController {
     return this.archivoService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.archivoService.findOne(+id);
+  @Get(':term')
+  findOne(@Param('term') term: string) {
+    return this.archivoService.findOne(term);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateArchivoDto: UpdateArchivoDto) {
-    return this.archivoService.update(+id, updateArchivoDto);
+  @Patch(':term')
+  update(@Param('term') term: string, @Body() updateArchivoDto: UpdateArchivoDto) {
+    return this.archivoService.update(term, updateArchivoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.archivoService.remove(+id);
+    return this.archivoService.remove(id);
   }
 }
