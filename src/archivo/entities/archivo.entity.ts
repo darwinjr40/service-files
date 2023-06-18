@@ -11,7 +11,7 @@ export class Archivo extends Document{
     url: string;
 
     @Prop({
-        unique: true,
+        // unique: true,
         index: true,
     })
     foreign_id: number;
