@@ -8,7 +8,7 @@ export class CreateArchivoDto {
     foreign_id: number;
 
     // isString, Minlenth 1
-    @IsString()
-    @MinLength(1)
-    url: string;
+    // @IsString()
+    // @MinLength(1)
+    url?: string;
 }

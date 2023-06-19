@@ -23,8 +23,29 @@ export class ArchivoService {
     }
   }
 
-  findAll() {
-    return `This action returns all archivo`;
+  async findAll() {
+    const archivos = await this.archivoModel.find().exec();
+    return archivos;
+  }
+
+  async getFiles(term: string) {
+    let archivos: Archivo[];
+    if ( !isNaN(+term) ) {
+      archivos = await this.archivoModel.find({ foreign_id: term }).exec();
+    }
+    // MongoID
+    if ( !archivos && isValidObjectId( term ) ) {
+      archivos = [await this.archivoModel.findById( term )];
+    }
+    // Name
+    if ( !archivos ) {
+      archivos = await this.archivoModel.find({ url: term}).exec();
+    }
+
+    if ( !archivos ) 
+      throw new NotFoundException(`archivo with id, name or no "${ term }" not found`);
+    
+    return archivos;
   }
 
   async findOne(term: string) {
@@ -66,7 +87,7 @@ export class ArchivoService {
     const { deletedCount } = await this.archivoModel.deleteOne({ _id: id });
     if ( deletedCount === 0 )
       throw new BadRequestException(`Archivo with id "${ id }" not found`);
-    
+
     return;
   }
 
