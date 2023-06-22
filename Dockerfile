@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Instalamos las dependencias de la aplicación
-RUN npm install
+RUN yarn install
 #
 # Exponemos el puerto en el que se ejecutará la aplicación
 EXPOSE 3000
