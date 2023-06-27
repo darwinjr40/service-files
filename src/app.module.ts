@@ -31,8 +31,9 @@ import { ArchivoModule } from './archivo/archivo.module';
       rootPath: join(__dirname,'..','public'), 
     }),
 
-    MongooseModule.forRoot('mongodb://localhost:27017/nest-archivo'),
-
+    // MongooseModule.forRoot('mongodb://localhost:27017/nest-archivo'),
+    MongooseModule.forRoot(process.env.DB_HOST_MONGO),
+    
     // ProductsModule,
 
     CommonModule,
